@@ -1,0 +1,31 @@
+{
+  "folders":
+  [
+    {
+      "name": "FamilyStore",
+      "path": "./",
+      "follow_symlinks": true,
+      // "folder_exclude_patterns": ["tmp/cache", "public/system"],
+      "binary_file_patterns": ["tmp/cache/**/*.*"],
+      "file_exclude_patterns": ["*.doc", "*.docx", "*.log"]
+    }
+    // ,{
+    //   "follow_symlinks": true,
+    //   "name": "gems",
+    //   "path": "/Users/evgenii/.rvm/gems/ruby-2.2.3@pss/gems",
+    // }
+  ],
+  "settings": {
+    "default_encoding": "UTF-8",
+    "fallback_encoding": "UTF-8",
+    "encoding": "UTF-8",
+    "show_encoding": true,
+
+    "font_size": 12,
+
+    "tab_size": 2,
+    "use_tab_stops": true,
+    "detect_indentation": false,
+    "translate_tabs_to_spaces": true
+  }
+}

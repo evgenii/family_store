@@ -2,15 +2,24 @@
 capybara-*.html
 .rspec
 /log
+!/log/.keep
 /tmp
 /db/*.sqlite3
 /db/*.sqlite3-journal
+/db/database.yml
 /public/system
+/public/spree
 /coverage/
 /spec/tmp
 *.orig
 rerun.txt
 pickle-email-*.html
+
+/config/database.yml
+/config/secrets.yml
+
+*.sublime-*
+!*.sublime-*.example
 
 # TODO Comment out this rule if you are OK with secrets being uploaded to the repo
 config/initializers/secret_token.rb
