@@ -42,7 +42,7 @@ gem 'spree_i18n',             github: 'spree-contrib/spree_i18n'
 gem 'spree_related_products', github: 'spree-contrib/spree_related_products'
 gem 'spree_editor',           github: 'spree-contrib/spree_editor'
 gem 'spree_recently_viewed',  github: 'spree-contrib/spree_recently_viewed'
-
+gem 'spree_wishlist',         github: 'spree-contrib/spree_wishlist', branch: 'master'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

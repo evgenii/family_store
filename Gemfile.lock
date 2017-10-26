@@ -36,6 +36,15 @@ GIT
       spree_backend (>= 3.1.0, < 4.0)
       spree_extension
 
+GIT
+  remote: https://github.com/spree-contrib/spree_wishlist.git
+  revision: 17749adff6eb9054122e0376e52974e501715d73
+  branch: master
+  specs:
+    spree_wishlist (2.2.0)
+      spree_core (>= 3.1.0, < 4.0)
+      spree_extension
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -432,6 +441,7 @@ DEPENDENCIES
   spree_i18n!
   spree_recently_viewed!
   spree_related_products!
+  spree_wishlist!
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
