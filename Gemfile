@@ -45,7 +45,9 @@ group :development do
 end
 
 
-gem 'spree', '~> 3.0.6.1'
-gem 'spree_gateway', '~> 3.0.0'
-gem 'spree_auth_devise', '~> 3.0.0'
-gem 'spree_i18n', github: 'spree-contrib/spree_i18n', branch: '3-0-stable'
+gem 'spree'
+gem 'spree_gateway'
+gem 'spree_auth_devise'
+gem 'spree_i18n', github: 'spree-contrib/spree_i18n'
+gem 'spree_wishlist', github: 'spree-contrib/spree_wishlist', branch: 'master'
+gem 'spree_email_to_friend', github: 'spree-contrib/spree_email_to_friend', branch: 'master'
