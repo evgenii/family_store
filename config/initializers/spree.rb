@@ -16,6 +16,3 @@ Spree.config do |config|
 end
 
 Spree.user_class = "Spree::User"
-
-SpreeI18n::Config.available_locales = [:ru] # displayed on translation forms
-SpreeI18n::Config.supported_locales = [:ru] # displayed on frontend select box
