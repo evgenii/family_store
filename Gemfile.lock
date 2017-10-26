@@ -1,4 +1,15 @@
 GIT
+  remote: https://github.com/spree-contrib/spree_editor.git
+  revision: 48750a7e05abb5c6e03b0f44b178a6459d55165d
+  specs:
+    spree_editor (3.3.1)
+      ckeditor (~> 4.2.0)
+      spree_backend (>= 3.1.0, < 4.0)
+      spree_core (>= 3.1.0, < 4.0)
+      spree_extension
+      tinymce-rails (~> 4.2.5)
+
+GIT
   remote: https://github.com/spree-contrib/spree_i18n.git
   revision: 145ba95b0d552a3b078c0b2ee80f4592d4f0ee37
   specs:
@@ -96,6 +107,9 @@ GEM
       activesupport (>= 3.0.0)
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
+    ckeditor (4.2.4)
+      cocaine
+      orm_adapter (~> 0.5.0)
     cldr-plurals-runtime-rb (1.0.1)
     climate_control (0.2.0)
     cocaine (0.5.8)
@@ -358,6 +372,8 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
+    tinymce-rails (4.2.8)
+      railties (>= 3.1.1)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.3)
@@ -404,6 +420,7 @@ DEPENDENCIES
   selenium-webdriver
   spree (~> 3.4)
   spree_auth_devise (~> 3.3)
+  spree_editor!
   spree_gateway (~> 3.3)
   spree_i18n!
   spree_related_products!
