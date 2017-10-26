@@ -1,1 +1,1 @@
-SpreeI18n::Config.available_locales = [:en, :ru, :ua]
+SpreeI18n::Config.available_locales = [:ru]
