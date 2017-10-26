@@ -22,6 +22,13 @@ GIT
       spree_extension
 
 GIT
+  remote: https://github.com/spree-contrib/spree_recently_viewed.git
+  revision: 6a7eb6a80cef9fad971e6ba8671ff472c10fab19
+  specs:
+    spree_recently_viewed (3.3.0)
+      spree_core (>= 3.1.0, < 4.0)
+
+GIT
   remote: https://github.com/spree-contrib/spree_related_products.git
   revision: be54f698629eba70b8135e7f5cacbc57962aee71
   specs:
@@ -423,6 +430,7 @@ DEPENDENCIES
   spree_editor!
   spree_gateway (~> 3.3)
   spree_i18n!
+  spree_recently_viewed!
   spree_related_products!
   spring
   spring-watcher-listen (~> 2.0.0)
