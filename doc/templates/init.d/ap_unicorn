@@ -1,0 +1,78 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          ap_unicorn
+# Required-Start:
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Example initscript
+# Description:       This file should be used to construct scripts to be
+#                    placed in /etc/init.d.
+### END INIT INFO
+#
+PATH=/usr/bin:/bin
+
+NAME=unicorn
+NAME_API=unicorn_api
+RAILS_ENV=production
+RAILS_API_ENV=production_api
+LOGFILE=/tmp/$NAME.log
+
+RUN_USER=atlant
+UNICORN_BIN='bundle exec unicorn_rails'
+set -e
+
+case "$1" in
+  pgok)
+    DESC='Atlant-protocol'
+    RAILS_DIR=/home/$RUN_USER/application/current
+    ;;
+  *)
+    N=/etc/init.d/$NAME
+    echo "Usage: $N {pgok} {start|stop|restart|reload|graceful_stop}" >&2
+    exit 1
+    ;;
+  esac
+
+case "$2" in
+  start)
+    echo -n "Starting $DESC: "
+    su - $RUN_USER -c "cd $RAILS_DIR && $UNICORN_BIN -c $RAILS_DIR/config/$NAME.rb -E $RAILS_ENV -D" # >> $LOGFILE 2>&1
+    su - $RUN_USER -c "cd $RAILS_DIR && $UNICORN_BIN -c $RAILS_DIR/config/$NAME_API.rb -E $RAILS_API_ENV -D" # >> $LOGFILE 2>&1
+    echo "$NAME started."
+    ;;
+  stop)
+    echo -n "Stopping $DESC: "
+    su - $RUN_USER -c "if [ -f $RAILS_DIR/tmp/pids/$NAME.pid ] && [ -e /proc/$(cat $RAILS_DIR/tmp/pids/$NAME.pid) ]; then kill -QUIT `cat $RAILS_DIR/tmp/pids/$NAME.pid`; fi" # >> $LOGFILE 2>&1
+    su - $RUN_USER -c "if [ -f $RAILS_DIR/tmp/pids/$NAME_API.pid ] && [ -e /proc/$(cat $RAILS_DIR/tmp/pids/$NAME_API.pid) ]; then kill -QUIT `cat $RAILS_DIR/tmp/pids/$NAME_API.pid`; fi" # >> $LOGFILE 2>&1
+    echo "$NAME stopped."
+    ;;
+  graceful_stop)
+    echo -n "Stopping $DESC: "
+    su - $RUN_USER -c "kill -QUIT `cat $RAILS_DIR/tmp/pids/$NAME.pid`"
+    su - $RUN_USER -c "kill -QUIT `cat $RAILS_DIR/tmp/pids/$NAME_API.pid`"
+    echo "Done!"
+    ;;
+  reload)
+    echo -n "Reloading $DESC: "
+    su - $RUN_USER -c "kill -s USR2 `cat $RAILS_DIR/tmp/pids/$NAME.pid`"
+    su - $RUN_USER -c "kill -s USR2 `cat $RAILS_DIR/tmp/pids/$NAME_API.pid`"
+    echo "Done!"
+    ;;
+  restart)
+    echo -n "Restarting $DESC: "
+    su - $RUN_USER -c "if [ -f $RAILS_DIR/tmp/pids/$NAME.pid ] && [ -e /proc/$(cat $RAILS_DIR/tmp/pids/$NAME.pid) ]; then kill -QUIT `cat $RAILS_DIR/tmp/pids/$NAME.pid`; fi"
+    su - $RUN_USER -c "if [ -f $RAILS_DIR/tmp/pids/$NAME_API.pid ] && [ -e /proc/$(cat $RAILS_DIR/tmp/pids/$NAME_API.pid) ]; then kill -QUIT `cat $RAILS_DIR/tmp/pids/$NAME_API.pid`; fi"
+    sleep 1
+    su - $RUN_USER -c "cd $RAILS_DIR && $UNICORN_BIN -c $RAILS_DIR/config/$NAME.rb -E $RAILS_ENV -D"
+    su - $RUN_USER -c "cd $RAILS_DIR && $UNICORN_BIN -c $RAILS_DIR/config/$NAME_API.rb -E $RAILS_API_ENV -D"
+    echo "$NAME restarted."
+    ;;
+  *)
+    N=/etc/init.d/$NAME
+    echo "Usage: $N {pgok} {start|stop|restart|reload|graceful_stop}" >&2
+    exit 1
+    ;;
+  esac
+exit 0

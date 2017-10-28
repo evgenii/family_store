@@ -1,0 +1,16 @@
+set $can503 0;
+if (-f $document_root/system/maintenance.html) {
+  set $can503 1;
+}
+if ($uri ~* /assets/){
+  set $can503 0;
+}
+if ($can503 = 1) {
+   return 503;
+}
+error_page 503 @maintenance;
+location @maintenance {
+  if ($uri !~ ^/assets/) {
+    rewrite ^(.*)$ /maintenance.html break;
+  }
+}

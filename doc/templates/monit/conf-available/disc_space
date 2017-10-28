@@ -1,0 +1,16 @@
+## do not working ? usage disc space
+#check device simfs with path /
+#  group system
+#  if space usage > 80% then alert
+
+#  check filesystem datafs with path /dev/sdb1
+#    start program  = "/bin/mount /data"
+#    stop program  = "/bin/umount /data"
+#    if failed permission 660 then unmonitor
+#    if failed uid root then unmonitor
+#    if failed gid disk then unmonitor
+#    if space usage > 80% for 5 times within 15 cycles then alert
+#    if space usage > 99% then stop
+#    if inode usage > 30000 then alert
+#    if inode usage > 99% then stop
+#    group server

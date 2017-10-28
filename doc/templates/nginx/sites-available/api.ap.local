@@ -1,0 +1,48 @@
+upstream api_ap_local{
+  server unix:/home/atlant/application/shared/unicorn_api.sock fail_timeout=0;
+}
+server{
+  listen 80;
+  #listen 443 ssl;       # порт https
+
+  client_max_body_size 30m;
+
+  server_name api.ap.local;
+
+  keepalive_timeout 5;
+  root /home/atlant/application/current/public;
+
+  #ssl on;
+  #ssl_certificate     /etc/nginx/ssl/cert_ap_dev.crt;
+  #ssl_certificate_key /etc/nginx/ssl/cert_ap_dev.key;
+  #add_header Strict-Transport-Security 'max-age=604800';
+
+  access_log /var/log/nginx/api_ap_local_access.log;
+  error_log /var/log/nginx/api_ap_local_error.log;
+
+  try_files $uri/index.html $uri.html $uri @myapp;
+
+  # maintenance page config
+  include /etc/nginx/conf.d/maintenance;
+
+  location @myapp {
+    proxy_pass http://api_ap_local;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+  }
+
+  error_page 500 502 503 504 /500.html;
+  location = /500.html {
+    root /home/atlant/application/current/public;
+  }
+
+  location ~ ^/assets/ {
+    expires 1y;
+    add_header Cache-Control public;
+
+    add_header ETag "";
+    break;
+  }
+
+}

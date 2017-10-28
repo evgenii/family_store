@@ -1,0 +1,55 @@
+###############################################################################
+## Monit control file
+###############################################################################
+
+###############################################################################
+## Global section
+###############################################################################
+
+set httpd port 9999 and
+  use address localhost
+  allow admin:atlant_tetra
+
+  set daemon 60            # check services at 1-minute intervals
+
+  set logfile /var/log/monit.log
+
+  set idfile /var/lib/monit/id
+  set statefile /var/lib/monit/state
+
+#
+# set mailserver mail.bar.baz,               # primary mailserver
+#                backup.bar.baz port 10025,  # backup mailserver on port 10025
+#                localhost                   # fallback relay
+#
+#
+# set eventqueue
+#     basedir /var/lib/monit/events # set the base directory where events will be stored
+#     slots 100                     # optionally limit the queue size
+
+###############################################################################
+## Services
+###############################################################################
+
+#  check filesystem datafs with path /dev/sdb1
+#    start program  = "/bin/mount /data"
+#    stop program  = "/bin/umount /data"
+#    if failed permission 660 then unmonitor
+#    if failed uid root then unmonitor
+#    if failed gid disk then unmonitor
+#    if space usage > 80% for 5 times within 15 cycles then alert
+#    if space usage > 99% then stop
+#    if inode usage > 30000 then alert
+#    if inode usage > 99% then stop
+#    group server
+#
+
+###############################################################################
+## Includes
+###############################################################################
+##
+## It is possible to include additional configuration parts from other files or
+## directories.
+#
+#   include /etc/monit/conf.d/*
+#

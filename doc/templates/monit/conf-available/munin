@@ -1,0 +1,8 @@
+##munin
+#check process munin with pidfile /var/run/munin/munin-node.pid
+#  group system
+#  start program = "/etc/init.d/munin-node start"
+#  stop  program = "/etc/init.d/munin-node stop"
+#  if cpu is greater than 40% for 2 cycles then alert
+#  if cpu > 60% for 5 cycles then restart
+#  if 5 restarts within 5 cycles then timeout

@@ -1,0 +1,5 @@
+## USB flash mounter
+#check process mounter with pidfile /tmp/apusb.pid
+#  group system
+#  start program = "/etc/init.d/mounter start" with timeout 30 seconds
+#  stop program = "/etc/init.d/mounter stop" with timeout 30 seconds

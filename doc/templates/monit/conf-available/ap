@@ -1,0 +1,31 @@
+check process loops with pidfile /home/tetra/application/shared/pids/loops.pid
+  group atlant
+  start program = "/etc/init.d/loops pgok start" with timeout 60 seconds
+  stop program = "/etc/init.d/loops pgok stop" with timeout 60 seconds
+  if cpu is greater than 40% for 5 cycles then alert
+  if cpu > 60% for 10 cycles then restart
+  if memory usage > 10% then alert
+  if 5 restarts within 5 cycles then timeout
+
+check process unicorn with pidfile /home/tetra/application/shared/pids/unicorn.pid
+  group atlant
+  start program = "/etc/init.d/ap_unicorn pgok start" with timeout 60 seconds
+  stop program = "/etc/init.d/ap_unicorn pgok stop" with timeout 60 seconds
+  if failed host pgok.corp port 80 then alert
+  if failed host pgok.corp port 80 for 5 cycles then restart
+  if cpu is greater than 40% for 2 cycles then alert
+  if cpu > 60% for 5 cycles then restart
+  if memory usage > 15% then alert
+  if 5 restarts within 5 cycles then timeout
+
+check process unicorn_api with pidfile /home/tetra/application/shared/pids/unicorn_api.pid
+  group atlant
+  start program = "/etc/init.d/ap_unicorn pgok start" with timeout 60 seconds
+  stop program = "/etc/init.d/ap_unicorn pgok stop" with timeout 60 seconds
+  if failed host pgok.corp port 80 then alert
+  if failed host pgok.corp port 80 for 5 cycles then restart
+  if cpu is greater than 40% for 2 cycles then alert
+  if cpu > 60% for 5 cycles then restart
+  if memory usage > 15% then alert
+  if 5 restarts within 5 cycles then timeout
+
