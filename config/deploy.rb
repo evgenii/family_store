@@ -16,7 +16,7 @@ set :ssh_options, {
                 }
 
 set :linked_files, %w(config/database.yml config/secrets.yml config/tinymce.yml config/unicorn.rb)
-set :linked_dirs, %w(log tmp/pids tmp/sockets public/system)
+set :linked_dirs, %w(log tmp/pids tmp/sockets public/system public/spree)
 
 set :log_dir, -> { shared_path.join('log') }
 set :pid_dir, -> { shared_path.join('tmp/pids') }
