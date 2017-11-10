@@ -38,17 +38,19 @@ gem 'i18n', '~> 0.7'
 gem 'spree', '~> 3.4'
 gem 'spree_auth_devise', '~> 3.3'
 gem 'spree_gateway', '~> 3.3'
-gem 'spree_i18n',             github: 'spree-contrib/spree_i18n'
-gem 'spree_related_products', github: 'spree-contrib/spree_related_products'
-gem 'spree_editor',           github: 'spree-contrib/spree_editor'
-gem 'spree_recently_viewed',  github: 'spree-contrib/spree_recently_viewed'
-gem 'spree_wishlist',         github: 'spree-contrib/spree_wishlist', branch: 'master'
+gem 'spree_i18n',             github: 'evgenii/spree_i18n'
+gem 'spree_related_products', github: 'evgenii/spree_related_products'
+gem 'spree_editor',           github: 'evgenii/spree_editor'
+gem 'spree_recently_viewed',  github: 'evgenii/spree_recently_viewed'
+gem 'spree_wishlist',         github: 'evgenii/spree_wishlist'
 
 group :development, :test do
   # Use Puma as the app server
   gem 'puma', '~> 3.7'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry'
+  gem 'pry-rails'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
