@@ -1,28 +1,15 @@
 ru:
-  activerecord:
-    attributes:
-      spree/state_change:
-        state_changes: "Состояния"
-        type: "Тип"
-        state_from: "Изменилось с"
-        state_to: "Изменилось на"
-        user: "Пользователь"
-        timestamp: "Дата/Время"
-        updated: "Обновлено"
-    models:
-      spree/state_change:
-        one: "Состояние"
-        other: "Состояния"
   spree:
-    admin:
-      tab:
-        return_authorizations: "Разрешения на возврат"
-        customer_returns: "Возвраты покупателю"
-    previous_state_missing: 'н/а'
     order_line_items: "Товары в заказе"
     discontinue_on: "Дисконт с"
     promotionable: 'Доступно по промо?'
     tags: 'Теги'
     tags_placeholder: 'Начните вводить тег'
-    meta_title: 'Мета-заголовки'
     available: Доступен
+    taxonomy_categories_name: Фильтр категорий
+    taxonomy_brands_name: Фильтр берендов
+    coupon_code_apply: Применить
+  number:
+    percentage:
+      format:
+        precision: 1
