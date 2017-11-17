@@ -11,6 +11,7 @@ set :rvm_ruby_version, '2.3.1'
 set :keep_releases, 5
 set :ssh_options, {
                   keys:          %w(~/.ssh/id_rsa),
+                  keepalive:     true,
                   forward_agent: true,
                   auth_methods:  %w(publickey)
                 }

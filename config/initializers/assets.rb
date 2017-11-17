@@ -12,4 +12,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+
+Rails.application.config.assets.precompile.delete('select2_locale*')
+Rails.application.config.assets.precompile += %w(select2_locale_uk select2_locale_ru select2_locale_en)
 Rails.application.config.assets.precompile += %w( ckeditor/*)
