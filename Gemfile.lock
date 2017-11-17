@@ -30,7 +30,8 @@ GIT
 
 GIT
   remote: https://github.com/evgenii/spree_related_products.git
-  revision: 042878bcbde638c7b81a549246f32d952aadb4fa
+  revision: 78d271aafc480ff3481e546fc011654a67c20ade
+  branch: evgenii/fixes
   specs:
     spree_related_products (3.3.0)
       spree_backend (>= 3.1.0, < 4.0)
@@ -43,6 +44,17 @@ GIT
     spree_wishlist (2.2.0)
       spree_core (>= 3.1.0, < 4.0)
       spree_extension
+
+GIT
+  remote: https://github.com/spree-contrib/spree-multi-domain.git
+  revision: 2219ee8f6c5063f82201a8a326d0fc36397e33b7
+  specs:
+    spree_multi_domain (3.3.1)
+      spree_api (>= 3.1.0, < 4.0)
+      spree_backend (>= 3.1.0, < 4.0)
+      spree_core (>= 3.1.0, < 4.0)
+      spree_extension
+      spree_frontend (>= 3.1.0, < 4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -480,6 +492,7 @@ DEPENDENCIES
   spree_editor!
   spree_gateway (~> 3.3)
   spree_i18n!
+  spree_multi_domain!
   spree_recently_viewed!
   spree_related_products!
   spree_wishlist!

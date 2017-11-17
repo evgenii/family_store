@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027011465) do
+ActiveRecord::Schema.define(version: 20171117131630) do
 
   create_table "ckeditor_assets", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string "data_file_name", null: false
@@ -429,6 +429,13 @@ ActiveRecord::Schema.define(version: 20171027011465) do
     t.index ["tax_category_id"], name: "index_spree_products_on_tax_category_id"
   end
 
+  create_table "spree_products_stores", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "product_id"
+    t.integer "store_id"
+    t.index ["product_id"], name: "index_spree_products_stores_on_product_id"
+    t.index ["store_id"], name: "index_spree_products_stores_on_store_id"
+  end
+
   create_table "spree_products_taxons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer "product_id"
     t.integer "taxon_id"
@@ -489,6 +496,11 @@ ActiveRecord::Schema.define(version: 20171027011465) do
     t.index ["product_group_id"], name: "index_promotion_rules_on_product_group_id"
     t.index ["promotion_id"], name: "index_spree_promotion_rules_on_promotion_id"
     t.index ["user_id"], name: "index_promotion_rules_on_user_id"
+  end
+
+  create_table "spree_promotion_rules_stores", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "promotion_rule_id"
+    t.integer "store_id"
   end
 
   create_table "spree_promotions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
@@ -891,6 +903,22 @@ ActiveRecord::Schema.define(version: 20171027011465) do
     t.index ["user_id"], name: "index_spree_store_credits_on_user_id"
   end
 
+  create_table "spree_store_payment_methods", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "store_id"
+    t.integer "payment_method_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "spree_store_shipping_methods", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer "store_id"
+    t.integer "shipping_method_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shipping_method_id"], name: "index_spree_store_shipping_methods_on_shipping_method_id"
+    t.index ["store_id"], name: "index_spree_store_shipping_methods_on_store_id"
+  end
+
   create_table "spree_stores", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string "name"
     t.string "url"
@@ -903,6 +931,7 @@ ActiveRecord::Schema.define(version: 20171027011465) do
     t.boolean "default", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "logo_file_name"
     t.index ["code"], name: "index_spree_stores_on_code", unique: true
     t.index ["default"], name: "index_spree_stores_on_default"
     t.index ["url"], name: "index_spree_stores_on_url"
@@ -966,7 +995,9 @@ ActiveRecord::Schema.define(version: 20171027011465) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position", default: 0
+    t.integer "store_id"
     t.index ["position"], name: "index_spree_taxonomies_on_position"
+    t.index ["store_id"], name: "index_spree_taxonomies_on_store_id"
   end
 
   create_table "spree_taxons", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
@@ -997,12 +1028,36 @@ ActiveRecord::Schema.define(version: 20171027011465) do
     t.index ["taxonomy_id"], name: "index_taxons_on_taxonomy_id"
   end
 
+  create_table "spree_themes", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "name"
+    t.string "state"
+    t.string "template_file_file_name"
+    t.string "template_file_content_type"
+    t.integer "template_file_file_size"
+    t.datetime "template_file_updated_at"
+  end
+
+  create_table "spree_themes_templates", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string "name"
+    t.text "body"
+    t.string "path"
+    t.string "format"
+    t.string "locale"
+    t.string "handler"
+    t.boolean "partial", default: false
+    t.integer "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["theme_id"], name: "index_spree_themes_templates_on_theme_id"
+  end
+
   create_table "spree_trackers", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string "analytics_id"
     t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "engine", default: 0, null: false
+    t.integer "store_id"
     t.index ["active"], name: "index_spree_trackers_on_active"
   end
 

@@ -39,10 +39,12 @@ gem 'spree', '~> 3.4'
 gem 'spree_auth_devise', '~> 3.3'
 gem 'spree_gateway', '~> 3.3'
 gem 'spree_i18n',             github: 'evgenii/spree_i18n'
-gem 'spree_related_products', github: 'evgenii/spree_related_products'
+gem 'spree_related_products', github: 'evgenii/spree_related_products', branch: 'evgenii/fixes'
 gem 'spree_editor',           github: 'evgenii/spree_editor'
 gem 'spree_recently_viewed',  github: 'evgenii/spree_recently_viewed'
 gem 'spree_wishlist',         github: 'evgenii/spree_wishlist'
+
+gem 'spree_multi_domain',     github: 'spree-contrib/spree-multi-domain'
 
 group :development, :test do
   # Use Puma as the app server
