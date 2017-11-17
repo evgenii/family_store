@@ -9,6 +9,9 @@ capybara-*.html
 /db/database.yml
 /public/system
 /public/spree
+/public/vinsol_spree_themes/**/precompiled_assets/**/*
+/public/assets/preview_vinsol_spree_theme/**/*
+/public/assets/vinsol_spree_theme/**/*
 /coverage/
 /spec/tmp
 *.orig
