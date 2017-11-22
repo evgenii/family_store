@@ -3,7 +3,7 @@ set :application, 'zvshop'
 set :repo_url, 'git@github.com:evgenii/family_store.git'
 
 set :branch,    -> { ENV['branch'] || 'master' }
-set :deploy_to, '/var/webapps/zvshop'
+#set :deploy_to, '/var/webapps/zvshop'
 set :rails_env, 'production'
 
 set :rvm_ruby_version, '2.3.1'
